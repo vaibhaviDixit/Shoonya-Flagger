@@ -85,7 +85,7 @@ function showAlertAndConfirm(flag) {
               "annotator": annotator,
               "reviewer": reviewer,
               "superchecker": superChecker,
-              "segmentNumber": segmentNumber,
+              "segment": segmentNumber,
               "role": role,
               "flag": flag
           };
