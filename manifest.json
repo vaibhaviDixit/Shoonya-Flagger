@@ -1,21 +1,24 @@
 {
-    "manifest_version": 3,
-    "name": "Shoonya Flagger",
-    "version": "1.0",
-    "permissions": [
-      "contextMenus",
-      "activeTab",
-      "scripting"
-    ],
-    "background": {
-      "service_worker": "background.js"
+  "manifest_version": 3,
+  "name": "Shoonya Flagger",
+  "version": "1.1",
+  "permissions": [
+    "contextMenus",
+    "activeTab",
+    "scripting",
+    "storage"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
     },
-    "action": {
-      "default_icon": {
-        "16": "icon.png",
-        "48": "icon.png",
-        "128": "icon.png"
-      }
-    }
+    "default_popup": "popup.html",
+    "default_popup_width": 600,
+    "default_popup_height": 400
   }
-  
+}
