@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoonya Flagger Report - Reviewers</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    /* Optional: Custom styles */
+    body {
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Shoonya Flagger Report - Reviewers</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Reviewer</th>
+          <th>Flag Count</th>
+        </tr>
+      </thead>
+      <tbody id="flagData">
+        <!-- Table rows will be inserted here -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS and jQuery (for Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // JavaScript to fetch data and populate the table
+    document.addEventListener('DOMContentLoaded', function () {
+      fetch('https://imradhe.com/api/flags')
+        .then(response => response.json())
+        .then(data => {
+          const flagDataElement = document.getElementById('flagData');
+          data.data.forEach(item => {
+            const row = `<tr>
+                          <td>${item.reviewer}</td>
+                          <td>${item.flag_count}</td>
+                        </tr>`;
+            flagDataElement.innerHTML += row;
+          });
+        })
+        .catch(error => console.error('Error fetching data:', error));
+    });
+  </script>
+</body>
+</html>
