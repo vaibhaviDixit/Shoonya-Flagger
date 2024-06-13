@@ -46,7 +46,7 @@ chrome.runtime.onInstalled.addListener(() => {
         const selectedElement = selection.getRangeAt(0).startContainer.parentElement;
         if (selectedElement) {
           let parent = selectedElement;
-          for (let i = 0; i < 3; i++) {
+          for (let i = 0; i < 2; i++) {
             parent = parent.parentElement;
             if (!parent) break;
           }
