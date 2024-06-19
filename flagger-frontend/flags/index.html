@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoonya Flagger - Flags</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">Shoonya Flagger</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  
+
+
+  <div class="container mt-4">
+    <!-- Back button with icon -->
+    <button class="back-button btn btn-secondary rounded-pill" onclick="window.history.back();">
+      <i class="bi bi-arrow-left fs-3"></i> Back
+    </button>
+    <h2 id="reportTitle">Shoonya Flagger - Flags</h2>
+    <h4 id="roleSubTitle" class="text-muted"></h4>
+    <h6 id="emailSubTitle" class="text-muted"></h6>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Project ID</th>
+          <th>Task ID</th>
+          <th>Annotator</th>
+          <th>Reviewer</th>
+          <th>Superchecker</th>
+          <th>Flag</th>
+          <th>Role</th>
+          <th>Segment</th>
+          <th>Time</th>
+        </tr>
+      </thead>
+      <tbody id="flagData">
+        <!-- Placeholder loading animation row -->
+        <tr id="loadingRow">
+          <td colspan="9" class="text-center">
+            <div class="spinner-border text-primary" role="status">
+              <span class="sr-only">Loading...</span>
+            </div>
+          </td>
+        </tr>
+        <!-- End placeholder row -->
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bootstrap JS and jQuery (for Bootstrap) -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <script>
+    // JavaScript to fetch data and populate the table
+    document.addEventListener('DOMContentLoaded', function () {
+      const urlParams = new URLSearchParams(window.location.search);
+      const role = urlParams.get('role');
+      const email = urlParams.get('email');
+
+      let apiEndpoint = 'https://imradhe.com/api/flags';
+      if (email) {
+        apiEndpoint = `https://imradhe.com/api/flags/${role}/${email}`;
+      }
+
+      const roleSubTitle = document.getElementById('roleSubTitle');
+      const emailSubTitle = document.getElementById('emailSubTitle');
+      if (email) {
+        roleSubTitle.textContent = `Role: ${role || 'All'}`;
+        emailSubTitle.textContent = `Email: ${email}`;
+      }
+
+      // Show loading animation
+      const loadingRow = document.getElementById('loadingRow');
+      loadingRow.style.display = 'table-row'; // Display the loading row
+
+      fetch(apiEndpoint)
+        .then(response => response.json())
+        .then(data => {
+          // Remove loading animation
+          loadingRow.style.display = 'none'; // Hide the loading row
+
+          // Populate table with fetched data
+          const flagDataElement = document.getElementById('flagData');
+          flagDataElement.innerHTML = ''; // Clear existing rows
+          data.data.forEach(item => {
+            const row = `<tr>
+                          <td>${item.projectID}</td>
+                          <td>${item.taskID}</td>
+                          <td><a href="/flags?role=annotator&email=${item.annotator}">${item.annotator}</a></td>
+                          <td><a href="/flags?role=reviewer&email=${item.reviewer}">${item.reviewer}</a></td>
+                          <td><a href="/flags?role=superchecker&email=${item.superchecker}">${item.superchecker}</a></td>
+                          <td>${item.flag}</td>
+                          <td>${item.role}</td>
+                          <td>${item.segment}</td>
+                          <td>${item.time}</td>
+                        </tr>`;
+            flagDataElement.innerHTML += row;
+          });
+        })
+        .catch(error => {
+          console.error('Error fetching data:', error);
+          // Optionally handle error and display an error message
+          loadingRow.innerHTML = '<td colspan="9" class="text-center text-danger">Error fetching data</td>';
+        });
+    });
+  </script>
+</body>
+</html>
