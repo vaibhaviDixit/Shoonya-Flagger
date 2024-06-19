@@ -21,6 +21,19 @@
             cursor: pointer;
             margin-top: 20px;  /* Add margin to prevent overlap */
         }
+        center{
+            margin-top: 30px;
+        }
+        #viewButton{
+            text-decoration: none;
+            padding: 10px;
+            width: 100%;
+            background-color: #1436cf;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;  /* Add margin to prevent overlap */
+        }
         #closeButton{
             padding: 10px;
             width: 100%;
@@ -30,7 +43,8 @@
             cursor: pointer;
             margin-top: 20px;  /* Add margin to prevent overlap */
         }
-        button:hover {
+        button:hover,
+        a:hover {
             opacity: 0.8;
         }
     </style>
@@ -42,7 +56,11 @@
     <label><input type="radio" name="role" value="3"> SuperChecker</label>
     <label><input type="radio" name="role" value="4"> Data Lead</label>
     <button id="saveButton">Save</button>
-    <button id="closeButton">Close</button>
+    
+    
+    <button id="viewButton">View Reports</button>
+
+    <footer><center>Developed by <a href="https://imradhe.com">Radhe Shyam Salopanthula</a><br><br>For Shoonya at <a href="https://ai4bharat.iitm.ac.in">AI4Bharat</a></center></footer>
 
     <script src="popup.js"></script>
 </body>
