@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     const saveButton = document.getElementById('saveButton');
-    const closeButton = document.getElementById('closeButton');
+    const viewButton = document.getElementById('viewButton');
 
     // Load saved role
     chrome.storage.sync.get(['role'], (result) => {
@@ -23,7 +23,17 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Close the popup when close button is clicked
-    closeButton.addEventListener('click', () => {
-        window.close();
+    viewButton.addEventListener('click', () => {
+        window.location.href = 'https://shoonya-flagger.netlify.app/';
+        window.open('https://shoonya-flagger.netlify.app/', '_blank');
     });
+    // Open a new window for every hyperlink tag to the href
+    const links = document.querySelectorAll('a');
+    links.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+            window.open(link.href, '_blank');
+        });
+    });
+
 });
