@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shoonya Flagger Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Icons -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <style>
+    .home-card {
+      border-radius: 10px;
+    }
+    .card-body {
+      padding: 1.25rem; /* Adjust padding as needed */
+    }
+    .card-title {
+      font-size: 1.25rem;
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+    .card-text {
+      font-size: 1rem;
+      color: #6c757d; /* Gray color */
+    }
+    .card-link {
+      text-decoration: none;
+      color: inherit; /* Inherit color from parent */
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light sticky-top">
+    <a class="navbar-brand" href="#">Shoonya Flagger</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="/">Home</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+<div class="container mt-5">
+  <h3>Dashboard</h3>
+  <div class="row mt-5">
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card home-card border-primary shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-auto">
+              <i class="fas fa-user fa-3x text-primary"></i>
+            </div>
+            <div class="col ml-2">
+              <div class="fs-small fw-bold text-primary text-uppercase mb-1">Annotator Reports</div>
+              <p class="card-text">View annotator flag reports</p>
+            </div>
+          </div>
+          <a href="/reports/?role=annotator" class="stretched-link card-link"></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card home-card border-warning shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-auto">
+              <i class="fas fa-eye fa-3x text-warning"></i>
+            </div>
+            <div class="col ml-2">
+              <div class="fs-small fw-bold text-warning text-uppercase mb-1">Reviewer Reports</div>
+              <p class="card-text">View reviewer flag reports</p>
+            </div>
+          </div>
+          <a href="/reports/?role=reviewer" class="stretched-link card-link"></a>
+        </div>
+      </div>
+    </div>
+    <div class="col-xl-4 col-md-6 mb-4">
+      <div class="card home-card border-success shadow h-100">
+        <div class="card-body">
+          <div class="row no-gutters align-items-center">
+            <div class="col-auto">
+              <i class="fas fa-check-double fa-3x text-success"></i>
+            </div>
+            <div class="col ml-2">
+              <div class="fs-small fw-bold text-success text-uppercase mb-1">Superchecker Reports</div>
+              <p class="card-text">View superchecker flag reports</p>
+            </div>
+          </div>
+          <a href="/reports/?role=superchecker" class="stretched-link card-link"></a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <footer class="text-center mt-5">
+    <p>Developed by <a href="https://imradhe.com">Radhe Shyam Salopanthula</a></p>
+    <p>For Shoonya at <a href="https://ai4bharat.iitm.ac.in">AI4Bharat</a></p>
+  </footer>
+
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
